@@ -12,6 +12,7 @@ The numbers come from AzerothCore's combat code, so they match what the server r
   - your miss, dodge and glancing-blow chance per swing against mobs of your level up to +3 (boss), with your hit, expertise and the dual-wield penalty counted
   - what those chances would be at full skill
   - your chance per swing to gain a point, and roughly how many swings (and minutes of auto-attack) until it's capped
+- **Hit from talents on the character sheet.** The stock Hit Rating stat (and DragonUI's) only converts rating, but the server adds talent hit on top. The melee and ranged Hit Rating rows now show it next to the rating (`99 +5%`), and their tooltips break down the total (rating, each talent, buffs) and say how often your attacks still miss a boss. Talents counted: Rogue and Warrior Precision, Death Knight Nerves of Cold Steel, Hunter Focused Aim, Shaman Dual Wield Specialization, Paladin Enlightened Judgements. A talent that needs a certain weapon type is shown as off when you don't have one equipped.
 - **Skills tab tooltips.** The same breakdown on every weapon skill row, in the stock Skills tab and in DragonUI's.
 - `/wsi` prints each equipped weapon's skill and miss chance to chat. `/wsi badges` toggles the slot numbers.
 
