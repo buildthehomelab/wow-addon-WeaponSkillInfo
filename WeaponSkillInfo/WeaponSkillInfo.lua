@@ -110,13 +110,15 @@ local function buildInfo(name, slot)
     }
     if info.feral then info.effective = level * 5 end
 
+    -- Rating plus talent hit, which the server adds to melee and ranged alike.
+    info.extraHit = ns.ExtraHit()
     if kind == "ranged" then
-        info.hit = GetCombatRatingBonus(CR_HIT_RANGED)
+        info.hit = GetCombatRatingBonus(CR_HIT_RANGED) + info.extraHit
         info.expertise = 0
         info.dualWield = false
         info.speed = UnitRangedDamage("player")
     else
-        info.hit = GetCombatRatingBonus(CR_HIT_MELEE) + (GetHitModifier and GetHitModifier() or 0)
+        info.hit = GetCombatRatingBonus(CR_HIT_MELEE) + info.extraHit
         local mainExp, offExp = 0, 0
         if GetExpertisePercent then mainExp, offExp = GetExpertisePercent() end
         info.expertise = (kind == "off" and offExp or mainExp) or 0
@@ -131,6 +133,12 @@ end
 function ns.InfoForSlot(slot)
     local name = skillForSlot(slot)
     return name and buildInfo(name, slot)
+end
+
+function ns.InfoForKind(kind)
+    for _, slot in ipairs(SLOTS) do
+        if slot.kind == kind then return ns.InfoForSlot(slot) end
+    end
 end
 
 function ns.InfoForSkillName(name)
@@ -222,7 +230,12 @@ function ns.AddSkillLines(tt, info)
 
     local notes = {}
     if info.hit > 0 then
-        notes[#notes + 1] = string.format("Your %s hit is counted.", pct(info.hit))
+        if info.extraHit > 0 then
+            notes[#notes + 1] = string.format("Your %s hit is counted (%s of it from talents and buffs, "
+                .. "which the character sheet leaves out).", pct(info.hit), pct(info.extraHit))
+        else
+            notes[#notes + 1] = string.format("Your %s hit is counted.", pct(info.hit))
+        end
     end
     if info.dualWield then
         notes[#notes + 1] = "Miss includes the 19% dual-wield penalty, which only white swings pay."

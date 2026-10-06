@@ -1,10 +1,11 @@
 ## Interface: 30300
 ## Title: WeaponSkillInfo
 ## Notes: |cffcaf7faExplains your weapon skill (e.g. Swords 100/300) in the character window: miss, dodge and glancing chances against mobs, and how long until it's capped|r
-## Version: 1.0
+## Version: 1.1
 ## Author: buildthehomelab
 ## OptionalDeps: DragonUI
 ## SavedVariables: WeaponSkillInfoDB
 
 Formulas.lua
+Hit.lua
 WeaponSkillInfo.lua
