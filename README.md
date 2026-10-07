@@ -31,6 +31,28 @@ Against a mob, with *gap* = mob level x 5 - your skill:
 
 The 0.4%-per-point slope is why a weapon 50 points under the cap misses a same-level mob about 22% of the time.
 
-## Install
+## Requirements
 
-Copy the `WeaponSkillInfo` folder into `Interface/AddOns`. enUS client only (skill names are matched by their English names).
+- A WoW 3.3.5a (12340) client in English (enUS). Skill names are matched by their English names.
+- An [AzerothCore](https://www.azerothcore.org) server. The formulas come from AzerothCore's combat code, so the numbers won't match retail or other emulators.
+- [DragonUI](https://github.com/NeticSoul/DragonUI) is optional. If it's loaded, its Skills tab and Hit Rating row get the same tooltips.
+
+## Installation
+
+1. Copy the `WeaponSkillInfo` folder into your `Interface/AddOns` folder, so you end up with `Interface/AddOns/WeaponSkillInfo/WeaponSkillInfo.toc`.
+2. Restart the game and enable the addon on the character select screen.
+
+enUS client only (skill names are matched by their English names).
+
+## Troubleshooting
+
+- **No numbers on the weapon slots:** the badge only shows when the weapon's skill is below the cap for your level. `/wsi badges` toggles it, and `/wsi` prints each equipped weapon's skill in chat either way.
+- **No tooltips on the Skills tab, or skill names not recognised:** the addon matches skills by their English names, so it only works on an enUS client.
+
+## Credits
+
+Author: [buildthehomelab](https://github.com/buildthehomelab)
+
+## License
+
+Released under the [MIT License](LICENSE).
